@@ -1,7 +1,6 @@
 ﻿#include "pch.h"
 
 #include "../Лаба интегралы/integration.cpp"
-#include <gtest/gtest.h>
 #include <cmath>
 #include <iostream>
 
