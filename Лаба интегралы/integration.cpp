@@ -21,68 +21,68 @@ double f_cubic(double x) {
 double left_rectangles(double (*func)(double), double a, double b, int32_t n) {
     double h = (b - a) / n;
     double sum = 0.0;
-    
+
     for (int32_t i = 0; i < n; i++) {
         double x = a + i * h;
         sum += func(x);
     }
-    
+
     return sum * h;
 }
 
 double right_rectangles(double (*func)(double), double a, double b, int32_t n) {
     double h = (b - a) / n;
     double sum = 0.0;
-    
+
     for (int32_t i = 1; i <= n; i++) {
         double x = a + i * h;
         sum += func(x);
     }
-    
+
     return sum * h;
 }
 
 double middle_rectangles(double (*func)(double), double a, double b, int32_t n) {
     double h = (b - a) / n;
     double sum = 0.0;
-    
+
     for (int32_t i = 0; i < n; i++) {
         double x = a + i * h + h / 2.0;
         sum += func(x);
     }
-    
+
     return sum * h;
 }
 
 double trapezoidal(double (*func)(double), double a, double b, int32_t n) {
     double h = (b - a) / n;
     double sum = (func(a) + func(b)) / 2.0;
-    
+
     for (int32_t i = 1; i < n; i++) {
         double x = a + i * h;
         sum += func(x);
     }
-    
+
     return sum * h;
 }
 
 double simpson(double (*func)(double), double a, double b, int32_t n) {
     if (n % 2 != 0) n++; // Делаем n четным для метода Симпсона
-    
+
     double h = (b - a) / n;
     double sum = func(a) + func(b);
-    
+
     // Нечетные точки (коэффициент 4)
     for (int32_t i = 1; i < n; i += 2) {
         double x = a + i * h;
         sum += 4.0 * func(x);
     }
-    
+
     // Четные точки (коэффициент 2)
     for (int32_t i = 2; i < n; i += 2) {
         double x = a + i * h;
         sum += 2.0 * func(x);
     }
-    
+
     return sum * h / 3.0;
 }
